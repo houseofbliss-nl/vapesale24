@@ -80,7 +80,7 @@ export function buildTelegramMessage(
   const payment = [
     "💳  APMOKĖJIMAS",
     `    Bankiniu pavedimu :  ${fmt(total)}`,
-    `    Kriptovaliuta :      ${fmt(cryptoTotal)}  (sutaupote ${CRYPTO_DISCOUNT_PERCENT}%)`,
+    `    Kriptovaliuta / dovanų kortelė :  ${fmt(cryptoTotal)}  (sutaupote ${CRYPTO_DISCOUNT_PERCENT}%)`,
     "    Apmokėjimas reikalingas prieš pristatymą.",
   ].join("\n");
 
