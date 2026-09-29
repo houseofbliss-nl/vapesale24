@@ -54,8 +54,18 @@ const itemListSchema = {
 const crumbs = [{ name: "Pradžia", url: "/" }, { name: label }];
 ---
 <Base
-  title={`${label} — ${SITE_NAME}`}
-  description={`VAPELT: ${label} (${count} produktai). Elektroninės cigaretės, vienkartiniai garintuvai, e-skysčiai. Užsakymas per Telegram.`}
+  title={isVisi
+    ? `Vape, elektroninės cigaretės ir nikotino pagalvėlės — pirkti | ${SITE_NAME}`
+    : cat.id === "vienkartiniai"
+      ? `Vienkartinės cigaretės pirkti — iki 50 000 pūtimų | ${SITE_NAME}`
+      : cat.id === "esultys"
+        ? `E-skysčiai (E-sultys) pirkti — 0 mg, 3 mg, 6 mg, 10 mg, 20 mg | ${SITE_NAME}`
+        : cat.id === "nicotine-pouches"
+          ? `Nikotino pagalvėlės pirkti — nikotino maišeliai VELO, 4NX, Arctic7 | ${SITE_NAME}`
+          : `${label} — pirkti | ${SITE_NAME}`}
+  description={isVisi
+    ? `VAPELT: visas asortimentas (${count} produktai). Elektroninės cigaretės, vienkartiniai garintuvai, e-skysčiai, nikotino pagalvėlės. Pristatymas visoje Lietuvoje. Užsakymas per Telegram.`
+    : `VAPELT: ${label} (${count} produktai). Elektroninės cigaretės, vienkartiniai garintuvai, e-skysčiai. Pristatymas visoje Lietuvoje. Užsakymas per Telegram.`}
   canonicalPath={`/kategorijos/${isVisi ? "visi" : cat.id}`}
   jsonLd={itemListSchema}
   breadcrumb={crumbs}

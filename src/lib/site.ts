@@ -2,7 +2,7 @@
 import { TELEGRAM_HANDLE } from "./telegram";
 
 export const SITE_NAME = "VAPELT";
-export const SITE_TITLE = "VAPELT — Elektroninės cigaretės ir vapingas Lietuvoje";
+export const SITE_TITLE = "VAPELT — elektroninės cigaretės, vape ir nikotino pagalvėlės pirkti Lietuvoje";
 export const SITE_URL = "https://vapelt.dealsnows.com";
 export const SITE_LANG = "lt";
 export const TELEGRAM_URL = `https://t.me/${TELEGRAM_HANDLE}`;
