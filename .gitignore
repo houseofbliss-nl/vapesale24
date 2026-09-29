@@ -29,3 +29,11 @@ pnpm-debug.log*
 /check-slim.mjs
 translation-progress.json
 /scripts/*.log
+
+# ⛔ Secrets Google OAuth — NE JAMAIS pousser
+client_secret_*.json
+gsc-token*.json
+gsc-*.json
+
+# fichiers temporaires d'analyse (curl/dump HTML)
+/scripts/_*.html

@@ -50,7 +50,14 @@ const {
 } = Astro.props;
 
 const canonical = canonicalPath == null ? Astro.url.pathname : canonicalPath;
-const canonicalUrl = canonical.startsWith("http") ? canonical : `${SITE_URL}${canonical}`;
+// Forcer le slash final sur les chemins relatifs : les pages sont servies en
+// /foo/ (répertoires Astro) et GSC considère /foo (sans slash) comme une
+// redirection 308 → « pages with redirect ». La racine "/" reste inchangée.
+const canonicalUrl = (() => {
+  if (canonical.startsWith("http")) return canonical;
+  const p = canonical === "" || canonical.endsWith("/") ? canonical : `${canonical}/`;
+  return `${SITE_URL}${p}`;
+})();
 
 const ogImageUrl = ogImage.startsWith("http") ? ogImage : `${SITE_URL}${ogImage}`;
 

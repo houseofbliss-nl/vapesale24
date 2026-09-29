@@ -64,11 +64,17 @@ const schema = {
       shippingDestination: { "@type": "DefinedRegion", addressCountry: SHIPPING_COUNTRY },
       deliveryTime: {
         "@type": "ShippingDeliveryTime",
+        handlingTime: {
+          "@type": "QuantitativeValue",
+          minValue: 0,
+          maxValue: 1,
+          unitCode: "DAY",
+        },
         transitTime: {
           "@type": "QuantitativeValue",
-          minValue: 0.5,
-          maxValue: 2,
-          unitCode: "HUR",
+          minValue: 0,
+          maxValue: 3,
+          unitCode: "DAY",
         },
       },
     },
