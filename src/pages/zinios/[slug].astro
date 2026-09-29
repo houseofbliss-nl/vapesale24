@@ -1,0 +1,58 @@
+---
+// Blog VAPELT — article « Žinios ». Contenu éditorial lituanien ciblant les
+// requêtes à fort volume du marché LT (nikotino pagalvėlės, e-skysčiai,
+// vienkartiniai garintuvai). Chaque article est une URL unique → nouvelle
+// chance d'indexation + cible de requêtes long-tail.
+import Base from "../../layouts/Base.astro";
+import { SITE_NAME, SITE_URL } from "../../lib/site";
+import { POSTS, type BlogPost } from "../../lib/blog";
+
+interface Props { post: BlogPost; }
+
+export function getStaticPaths() {
+  return POSTS.map((p) => ({ params: { slug: p.slug }, props: { post: p } }));
+}
+
+const { post } = Astro.props;
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  headline: post.title,
+  description: post.excerpt,
+  datePublished: post.date,
+  author: { "@type": "Organization", name: SITE_NAME },
+  publisher: {
+    "@type": "Organization",
+    name: SITE_NAME,
+    url: SITE_URL,
+    address: { "@type": "PostalAddress", streetAddress: "Gedimino pr. 1", addressLocality: "Vilnius", addressCountry: "LT" },
+  },
+  mainEntityOfPage: `${SITE_URL}/zinios/${post.slug}`,
+};
+---
+<Base
+  title={`${post.title} | ${SITE_NAME}`}
+  description={post.excerpt}
+  canonicalPath={`/zinios/${post.slug}`}
+  jsonLd={schema}
+  ogType="article"
+>
+  <div class="mx-auto max-w-3xl px-4 py-10">
+    <p class="text-xs font-semibold uppercase tracking-wide text-neutral-500">Žinios · {post.date}</p>
+    <h1 class="mt-2 text-3xl font-black text-neutral-900 md:text-4xl">{post.title}</h1>
+    <p class="mt-4 text-base text-neutral-600">{post.excerpt}</p>
+    <div class="mt-6 space-y-5">
+      {post.body.map((b) => (
+        <div>
+          <h2 class="text-xl font-bold text-neutral-900">{b.h}</h2>
+          <p class="mt-2 text-sm leading-relaxed text-neutral-600">{b.p}</p>
+        </div>
+      ))}
+    </div>
+    <p class="mt-8 text-sm text-neutral-500">
+      Norite užsisakyti? Rašykite mums per „Telegram“ — padėsime išsirinkti ir pristatysime
+      visoje Lietuvoje.
+    </p>
+  </div>
+</Base>
