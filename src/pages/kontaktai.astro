@@ -1,0 +1,65 @@
+---
+import Base from "../layouts/Base.astro";
+import { SITE_NAME, SITE_URL, TELEGRAM_URL } from "../lib/site";
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "OnlineStore",
+  name: SITE_NAME,
+  url: SITE_URL,
+  description: "Kontaktai — VAPELT. Elektroninės cigaretės, vienkartiniai garintuvai, e-skysčiai ir nikotino pagalvėlės.",
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "Gedimino pr. 1",
+    addressLocality: "Vilnius",
+    addressRegion: "Vilniaus apskritis",
+    postalCode: "01103",
+    addressCountry: "LT",
+  },
+  contactPoint: {
+    "@type": "ContactPoint",
+    contactType: "customer service",
+    url: "https://t.me/Vapelt_shop",
+    availableLanguage: ["Lithuanian"],
+  },
+};
+---
+<Base
+  title={`Kontaktai — ${SITE_NAME}`}
+  description="VAPELT kontaktai — Vilnius, Gedimino pr. 1. Užsakymai ir klausimai per Telegram @Vapelt_shop. Pristatome visoje Lietuvoje."
+  canonicalPath="/kontaktai"
+  jsonLd={schema}
+>
+  <div class="mx-auto max-w-3xl px-4 py-10">
+    <h1 class="text-3xl font-black text-neutral-900 md:text-5xl">Kontaktai</h1>
+    <p class="mt-4 text-neutral-600">
+      {SITE_NAME} — elektroninių cigarečių, vienkartinių garintuvų, e-skysčių ir nikotino pagalvėlių
+      parduotuvė Lietuvoje. Atsakome į klausimus ir priimame užsakymus greičiausiai per Telegram.
+    </p>
+
+    <div class="mt-8 grid gap-4 md:grid-cols-2">
+      <div class="rounded-xl border border-neutral-200 p-5">
+        <p class="text-sm font-semibold uppercase tracking-wide text-neutral-500">Telegram</p>
+        <p class="mt-1 text-neutral-700">@Vapelt_shop</p>
+        <a
+          href={TELEGRAM_URL}
+          target="_blank"
+          rel="noopener"
+          class="mt-3 inline-flex items-center gap-2 rounded-lg bg-primary px-4 py-2 text-sm font-semibold text-white hover:bg-red-700"
+        >
+          Rašyti mums
+        </a>
+      </div>
+      <div class="rounded-xl border border-neutral-200 p-5">
+        <p class="text-sm font-semibold uppercase tracking-wide text-neutral-500">Adresas</p>
+        <p class="mt-1 text-neutral-700">Gedimino pr. 1, Vilnius 01103</p>
+        <p class="mt-1 text-sm text-neutral-500">Pristatome visoje Lietuvoje — kurjeriu arba paštu.</p>
+      </div>
+      <div class="rounded-xl border border-neutral-200 p-5 md:col-span-2">
+        <p class="text-sm font-semibold uppercase tracking-wide text-neutral-500">Darbo laikas</p>
+        <p class="mt-1 text-neutral-700">I–VII 9:00–21:00</p>
+        <p class="mt-1 text-sm text-neutral-500">Užsakymus per Telegram priimame visą parą — atsakome darbo laiku.</p>
+      </div>
+    </div>
+  </div>
+</Base>

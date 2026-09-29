@@ -91,6 +91,14 @@ const defaultSchema = {
     addressCountry: "LT",
   },
   geo: { "@type": "GeoCoordinates", latitude: 54.6872, longitude: 25.2797 },
+  contactPoint: {
+    "@type": "ContactPoint",
+    contactType: "customer service",
+    url: "https://t.me/Vapelt_shop",
+    availableLanguage: ["Lithuanian"],
+  },
+  sameAs: ["https://t.me/Vapelt_shop"],
+  areaServed: { "@type": "Country", name: "Lietuva" },
 };
 
 const pageSchema = schema ?? defaultSchema;
